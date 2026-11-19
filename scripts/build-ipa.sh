@@ -18,8 +18,8 @@ APP='build/DerivedData/Build/Products/Release-iphoneos/IslandLab.app'
 EXTENSION="$APP/PlugIns/IslandLabActivity.appex"
 test -f "$APP/IslandLab"
 test -f "$EXTENSION/IslandLabActivity"
-xcrun lipo -verify_arch arm64 "$APP/IslandLab"
-xcrun lipo -verify_arch arm64 "$EXTENSION/IslandLabActivity"
+xcrun lipo "$APP/IslandLab" -verify_arch arm64
+xcrun lipo "$EXTENSION/IslandLabActivity" -verify_arch arm64
 /usr/libexec/PlistBuddy -c 'Print :NSSupportsLiveActivities' "$APP/Info.plist" | /usr/bin/grep -qx true
 /usr/libexec/PlistBuddy -c 'Print :NSExtension:NSExtensionPointIdentifier' "$EXTENSION/Info.plist" | /usr/bin/grep -qx com.apple.widgetkit-extension
 

@@ -25,6 +25,7 @@ targets:
       properties:
         CFBundleDisplayName: Island Lab
         NSSupportsLiveActivities: true
+        UIRequiresFullScreen: true
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
