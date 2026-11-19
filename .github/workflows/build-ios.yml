@@ -1,0 +1,31 @@
+name: Build iPhone app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: island-lab-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project generator
+        run: brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+      - name: Build and validate unsigned iPhone app
+        run: bash scripts/build-ipa.sh
+      - name: Upload iPhone app
+        uses: actions/upload-artifact@v4
+        with:
+          name: IslandLab-unsigned
+          path: build/IslandLab-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 3

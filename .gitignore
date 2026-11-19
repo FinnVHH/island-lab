@@ -1,0 +1,9 @@
+build/
+Generated/
+*.xcodeproj/
+.DS_Store
+*.ipa
+*.p12
+*.mobileprovision
+*.p8
+.env
